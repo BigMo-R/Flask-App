@@ -6,3 +6,6 @@ transformers
 faiss-cpu
 huggingface_hub
 dotenv
+setuptools
+wheel
+pip
