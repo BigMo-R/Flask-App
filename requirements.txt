@@ -3,6 +3,5 @@ flask_cors
 langchain_community
 langchain
 transformers
-faiss==1.5.3
 huggingface_hub
 dotenv
