@@ -76,6 +76,6 @@ def ask_ai():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))  # Default to 5000 if PORT not set
+    port = int(os.environ.get('PORT', 10000))  # Default to 10000 if PORT is not set
     logger.info(f"Starting Flask server on port {port}...")
     app.run(host='0.0.0.0', port=port, debug=True)
