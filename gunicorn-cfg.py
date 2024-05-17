@@ -4,7 +4,7 @@ import multiprocessing
 import os
 
 # Get the port from the environment variable PORT (set by Render)
-port = os.getenv('PORT', '8000')
+port = os.getenv('PORT', '10000')
 
 # Basic settings
 bind = f"0.0.0.0:{port}"
