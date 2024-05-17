@@ -4,7 +4,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.embeddings.huggingface import HuggingFaceEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores.faiss import FAISS
 from langchain.chains.question_answering import load_qa_chain
 from langchain_community.llms.huggingface_endpoint import HuggingFaceEndpoint
@@ -25,6 +25,7 @@ CORS(app)  # Enable CORS for all routes
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# Define wrap_text_preserve_newlines function
 def wrap_text_preserve_newlines(text, width=110):
     lines = text.split('\n')
     wrapped_lines = [textwrap.fill(line, width=width) for line in lines]
@@ -36,7 +37,7 @@ try:
     logger.info("Loading and preprocessing the document...")
     loader = TextLoader("data.txt")
     document = loader.load()
-    
+
     # Text Splitting
     text_splitter = CharacterTextSplitter(chunk_size=1500, chunk_overlap=200)
     docs = text_splitter.split_documents(document)
@@ -76,6 +77,5 @@ def ask_ai():
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 10000))  # Default to 10000 if PORT is not set
-    logger.info(f"Starting Flask server on port {port}...")
-    app.run(host='0.0.0.0', port=port, debug=True)
+    logger.info("Starting Flask server...")
+    app.run(debug=True)
