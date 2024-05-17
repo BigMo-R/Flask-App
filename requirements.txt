@@ -8,3 +8,4 @@ python-dotenv==1.0.1
 faiss-cpu==1.8.0
 huggingface-hub==0.20.3
 gunicorn==22.0.0
+sentence-transformers
